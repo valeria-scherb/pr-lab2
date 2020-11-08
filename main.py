@@ -15,7 +15,7 @@ class Main:
         outside        = train_data['outside']
         print('To train:', len(inside), 'inside,', len(outside), 'outside')
         print('To classify:', len(classify_data), 'entries')
-        a = self.ker(inside[0])
+        a = np.negative(self.ker(inside[0]))
         print('Initial a_0 =', a)
         self.learn(a, inside, outside)
         pass
@@ -47,14 +47,14 @@ class Main:
                 break
             print('a_' + str(i) + ' =', a)
             i += 1
-            if i == 10:
-                break
+            # if i == 10:
+            #     break
         return a
                     
     def adjust(self, al, y):
         p = np.dot(np.negative(y), np.subtract(al, y)) / \
             la.norm(np.subtract(al, y)) ** 2
-        print(p)
+        print('p:', p, ',y:', y)
         p = max(min(p, 1), 0)
         return np.add(np.multiply(p, al), np.multiply(1-p, y))
 
