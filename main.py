@@ -17,7 +17,7 @@ class Main:
         print('To classify:', len(classify_data), 'entries')
         a = np.negative(self.ker(inside[0]))
         print('Initial a_0 =', a)
-        self.learn(a, inside, outside)
+        a = self.learn(a, inside, outside)
         print('------------------------------------------------')
         print('Learning result:', a)
         c = self.classify(a, classify_data)
