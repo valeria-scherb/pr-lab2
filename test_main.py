@@ -25,6 +25,11 @@ class TestMain(unittest.TestCase):
         self.assertIsInstance(classify, list)
         self.assertGreater(len(classify), 0)
 
+    def test_kernels(self):
+        m = main.Main()
+        self.assertEqual(m.ker([2, 3]), [2*2, 2*3, 3*2, 3*3, 2, 3, 1])
+        self.assertEqual(m.eigker([2, 3]), [2*2, 2*3, 3*2, 3*3, 0, 0, 0])
+
 
 if __name__ == '__main__':
     unittest.main()
