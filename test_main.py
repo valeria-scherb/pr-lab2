@@ -40,6 +40,15 @@ class TestMain(unittest.TestCase):
         c = m.classify(r, [[0, 0], [0.5, 0.5], [-2, -2], [5, 0], [5, 5], [-0.5, 0]])
         self.assertEqual(c, [0, 1, 5])
 
+    def test_classifier_offset(self):
+        m = main.Main()
+        inside = [[5, 5], [4, 4], [5, 7], [7, 5]]
+        outside = [[3, 0], [10, 10], [0, 5], [5, 0]]
+        a = np.negative(m.ker(inside[0]))
+        r = m.learn(a, inside, outside)
+        c = m.classify(r, [[6, 6], [4, 5], [7, 7], [3, 3], [5, 0], [0, 0]])
+        self.assertEqual(c, [0, 1, 2, 3, 5])
+
 
 
 if __name__ == '__main__':
